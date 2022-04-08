@@ -34,6 +34,7 @@ public class AuthorizationService {
     public boolean deleteUser(User user) {
         List<User> userList = userDAO.getUserList();
         User userCandidate = findUserByName(user.getUsername());
+        if (userCandidate == null) return false;
         return userList.remove(userCandidate);
     }
 

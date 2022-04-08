@@ -1,6 +1,7 @@
 package petrov.vitaliy.lab3server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,25 @@ public class AuthorizationController {
                 response.setCode(ResponseCode.USER_NOT_ADDED);
         } else
             response.setCode(ResponseCode.USER_AUTHORIZED);
+
+        return response;
+    }
+
+    @PostMapping("/disconnect")
+    public ConfirmationResponse disconnect(@RequestBody InputRequest disconnectRequest) {
+        String username = disconnectRequest.getProducts().get(0).getUsername();
+
+        User userCandidate = new User();
+        userCandidate.setUsername(username);
+
+        ConfirmationResponse response = new ConfirmationResponse();
+        response.setUsername(username);
+
+        if (!authorizationService.deleteUser(userCandidate)) {
+            response.setCode(ResponseCode.USER_NOT_FOUND);
+        }
+        else
+            response.setCode(ResponseCode.USER_DISCONNECTED);
 
         return response;
     }
