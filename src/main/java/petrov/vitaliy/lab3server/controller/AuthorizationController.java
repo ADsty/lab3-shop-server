@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import petrov.vitaliy.lab3server.forms.ConfirmationResponse;
-import petrov.vitaliy.lab3server.forms.Request;
+import petrov.vitaliy.lab3server.forms.InputRequest;
 import petrov.vitaliy.lab3server.forms.ResponseCode;
 import petrov.vitaliy.lab3server.model.User;
 import petrov.vitaliy.lab3server.service.AuthorizationService;
@@ -17,7 +17,7 @@ public class AuthorizationController {
     private AuthorizationService authorizationService;
 
     @PostMapping("/auth")
-    public ConfirmationResponse authorization(@RequestBody Request authorizationRequest) {
+    public ConfirmationResponse authorization(@RequestBody InputRequest authorizationRequest) {
         String username = authorizationRequest.getProducts().get(0).getUsername();
 
         User userCandidate = new User();

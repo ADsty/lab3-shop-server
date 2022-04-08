@@ -6,6 +6,6 @@ import petrov.vitaliy.lab3server.model.Product;
 import java.util.ArrayList;
 
 @Data
-public class Request {
+public class InputRequest {
     private ArrayList<Product> products;
 }

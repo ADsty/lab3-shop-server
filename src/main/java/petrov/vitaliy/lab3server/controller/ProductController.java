@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import petrov.vitaliy.lab3server.forms.ConfirmationResponse;
 import petrov.vitaliy.lab3server.forms.ProductListResponse;
-import petrov.vitaliy.lab3server.forms.Request;
+import petrov.vitaliy.lab3server.forms.InputRequest;
 import petrov.vitaliy.lab3server.forms.ResponseCode;
 import petrov.vitaliy.lab3server.model.Product;
 import petrov.vitaliy.lab3server.service.ProductService;
@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ConfirmationResponse addProducts(@RequestBody Request addProductsRequest) {
+    public ConfirmationResponse addProducts(@RequestBody InputRequest addProductsRequest) {
 
         ConfirmationResponse response = new ConfirmationResponse();
         response.setUsername(addProductsRequest.getProducts().get(0).getUsername());
@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @PostMapping("/buy")
-    public ConfirmationResponse buyProducts(@RequestBody Request buyProductsRequest) {
+    public ConfirmationResponse buyProducts(@RequestBody InputRequest buyProductsRequest) {
 
         ConfirmationResponse response = new ConfirmationResponse();
         response.setUsername(buyProductsRequest.getProducts().get(0).getUsername());
