@@ -1,0 +1,246 @@
+openapi: 3.0.3
+info:
+  title: Shop Server API
+  description: API for making purchases in shop
+  version: v1
+paths:
+  /auth:
+    post:
+      summary: Authorize user in shop server
+      description: Provides authorization for users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  required: true
+                  items:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        description: Name of user, who uses the server
+                      productName:
+                        type: string
+                        description: Name of product user wants to buy/add
+                      count:
+                        type: integer
+                        description: Amount of product units user wants to buy/add
+                      price:
+                        type: integer
+                        description: Price of one product unit in rubles
+      responses:
+        '200':
+          description: A JSON with an answer from server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    enum:
+                      - USER_AUTHORIZED
+                      - USER_ADDED
+                      - USER_NOT_ADDED
+                    description: Response code which means result of request of user in server
+                  username:
+                    type: string
+                    description: Name of user who made the request
+  /disconnect:
+    post:
+      summary: Disconnect user from the server
+      description: Deletes user from list of active users in server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  required: true
+                  items:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        description: Name of user, who uses the server
+                      productName:
+                        type: string
+                        description: Name of product user wants to buy/add
+                      count:
+                        type: integer
+                        description: Amount of product units user wants to buy/add
+                      price:
+                        type: integer
+                        description: Price of one product unit in rubles
+      responses:
+        '200':
+          description: A JSON with an answer from server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    enum:
+                      - USER_DISCONNECTED
+                      - USER_NOT_FOUND
+                    description: Response code which means result of request of user in server
+                  username:
+                    type: string
+                    description: Name of user who made the request
+  /add:
+    post:
+      summary: Add product to server
+      description: Adds product's name, price and amount to server list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  required: true
+                  items:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        description: Name of user, who uses the server
+                      productName:
+                        type: string
+                        description: Name of product user wants to buy/add
+                      count:
+                        type: integer
+                        description: Amount of product units user wants to buy/add
+                      price:
+                        type: integer
+                        description: Price of one product unit in rubles
+      responses:
+        '200':
+          description: A JSON with an answer from server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    enum:
+                      - PRODUCT_ADDED
+                      - PRODUCT_NOT_ADDED
+                    description: Response code which means result of request of user in server
+                  username:
+                    type: string
+                    description: Name of user who made the request
+  /buy:
+    post:
+      summary: Buy product from server
+      description: Buys product with specified amount, price and name from server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  required: true
+                  items:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        description: Name of user, who uses the server
+                      productName:
+                        type: string
+                        description: Name of product user wants to buy/add
+                      count:
+                        type: integer
+                        description: Amount of product units user wants to buy/add
+                      price:
+                        type: integer
+                        description: Price of one product unit in rubles
+      responses:
+        '200':
+          description: A JSON with an answer from server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    enum:
+                      - PURCHASE_COMPLETE
+                      - PURCHASE_NOT_COMPLETE
+                    description: Response code which means result of request of user in server
+                  username:
+                    type: string
+                    description: Name of user who made the request
+  /list:
+    get:
+      summary: Get the list of products from server
+      description: Gets name, amount and price of every product added to server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  required: true
+                  items:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        description: Name of user, who uses the server
+                      productName:
+                        type: string
+                        description: Name of product user wants to buy/add
+                      count:
+                        type: integer
+                        description: Amount of product units user wants to buy/add
+                      price:
+                        type: integer
+                        description: Price of one product unit in rubles
+      responses:
+        '200':
+          description: A JSON with a list of products from server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    required: true
+                    items:
+                      type: object
+                      properties:
+                        username:
+                          type: string
+                          description: Name of user, who uses the server
+                        productName:
+                          type: string
+                          description: Name of product user wants to buy/add
+                        count:
+                          type: integer
+                          description: Amount of product units user wants to buy/add
+                        price:
+                          type: integer
+                          description: Price of one product unit in rubles
