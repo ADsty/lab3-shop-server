@@ -1,5 +1,6 @@
 # Lab 3 shop server
 
+<a name="documentation-for-api-endpoints"></a>
 ## API endpoints
 
 | Method     | HTTP request         | Description                                                     |
@@ -10,6 +11,7 @@
 | buy        | **POST** /buy        | Buys product with specified amount, price and name from server  |
 |  list      | **GET** /list        | Gets name, amount and price of every product added to server    |
 
+<a name="documentation-for-request-format"></a>
 ##Request format
 
 Request format:
@@ -27,6 +29,7 @@ Product class format:
 | count       | integer | Amount of product units user wants to buy/add |
 | price       | integer | Price of one product unit in rubles           |
 
+<a name="documentation-for-response-format"></a>
 ##Response format
 
 For /list request:
